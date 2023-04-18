@@ -10,8 +10,7 @@
 </head>
 
 <body>
+	<img alt="" src="/img/bye.gif"><br>
 	홈입니다.
-</body>
-</html>
 </body>
 </html>
