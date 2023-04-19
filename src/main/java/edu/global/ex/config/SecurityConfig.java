@@ -1,5 +1,6 @@
 package edu.global.ex.config;
 
+//시큐리티 설정 파일
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,14 +24,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//초기 개발시만 해주는게 좋다.
 		http.csrf().disable();
 		
-		 http.authorizeRequests() //권한 체크
+		http.authorizeRequests() //권한 체크
 	      .antMatchers("/user/**").hasAnyRole("USER") // '/user'로 치고 들어갈 수 있는 권한을 가진 사람은 "USER"
 	      .antMatchers("/admin/**").hasAnyRole("ADMIN")
-	      .antMatchers("/**").permitAll();
+	      .antMatchers("/**").permitAll(); 
 //	      .antMatchers("/**").hasAnyRole("ADMIN"); // "/"로 치고들어오는 모든 파일 -> 치고들어올 수 있는 권한을 가진 것은 admin
 		 
 	      
-	     http.formLogin(); //스프링 시큐리티에 있는 기본 로그인 폼을 사용하겠다.
+	     //http.formLogin(); //스프링 시큐리티에 있는 기본 로그인 폼을 사용하겠다.
+		http.formLogin()
+			.loginPage("/login") //loginPage()는 로그인 할 때 페이지 url이고
+			.usernameParameter("id")
+			.passwordParameter("pw")
+			.permitAll(); //모든 유저가 로그인 화면을 볼 수 있게 한다.
+		
 	}
 	
 	@Override
