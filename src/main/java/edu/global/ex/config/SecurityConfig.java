@@ -1,14 +1,21 @@
 package edu.global.ex.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import edu.global.ex.security.CustomUserDetailsService;
 
 @Configuration //@Component(객체생성) + 의미(설정할 수 있는 파일)
 @EnableMethodSecurity //스프링 시큐리티 필터가 스프링 필터체인에 등록됨 = 스프링 시큐리티를 작동 시키는 파일이라는 걸 알려줌->스프링한테
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
@@ -29,8 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
        
-      auth.inMemoryAuthentication()
-           .withUser("user").password("{noop}user").roles("USER").and()
-           .withUser("admin").password("{noop}admin").roles("ADMIN"); //roles 권한
+//      auth.inMemoryAuthentication()
+//           .withUser("user").password("{noop}user").roles("USER").and()
+//           .withUser("admin").password("{noop}admin").roles("ADMIN"); //roles 권한
+		
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder()); //BCryptPasswordEncoder() PW암호화!
 	}
 }
