@@ -26,19 +26,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return new BCryptPasswordEncoder();
 	}
 	
-//	@Bean //UserVO는 공용적으로 사용하는 객체이고, 팔요할 때만 불러서 사용할 때는 @Bean이 좋다.
-//	public UserVO userVO() {
-//		UserVO vo = new UserVO();
-//		vo.setUsername("메롱");
-//		vo.setPassword("메롱");
-//		return vo;
-//	}
+	@Bean //UserVO는 공용적으로 사용하는 객체이고, 팔요할 때만 불러서 사용할 때는 Bean이 좋다.
+	public UserVO userVO() {
+		UserVO userVO = new UserVO();
+		userVO.setUsername("메롱");
+		userVO.setPassword("메롱");
+		return userVO;
+	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		//우선 CSRF설정을 해제한다.
-		//초기 개발시만 해주는게 좋다.
-		http.csrf().disable();
+		//우선 CSRF설정을 해제한다. 초기 개발시만 해주는게 좋다.
+		//http.csrf().disable();
 		
 		http.authorizeRequests() //권한 체크
 	      .antMatchers("/user/**").hasAnyRole("USER") // '/user'로 치고 들어갈 수 있는 권한을 가진 사람은 "USER"

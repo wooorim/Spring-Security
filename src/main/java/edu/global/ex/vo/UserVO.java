@@ -12,10 +12,10 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@Service
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 public class UserVO {
 	private String username;
 	private String password;

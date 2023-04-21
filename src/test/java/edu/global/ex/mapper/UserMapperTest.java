@@ -66,12 +66,12 @@ class UserMapperTest {
 		
 		System.out.println(plainPW + ":" + encodedPW);
 		System.out.println(passwordEncoder.matches(plainPW, encodedPW));
-		//System.out.println(userVO);
+		System.out.println(userVO);
 		
 		
 		//=============================
 		//JUnit이 제공하는 함수
-		//assertNotEquals(plainPW, encodedPW);
+		assertNotEquals(plainPW, encodedPW);
 		assertEquals(plainPW, encodedPW);
 		
 		assertTrue(new BCryptPasswordEncoder().matches(plainPW, encodedPW));
