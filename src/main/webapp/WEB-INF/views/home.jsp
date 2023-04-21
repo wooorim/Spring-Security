@@ -22,13 +22,13 @@
        <input type="submit" value="로그아웃" />
    </form:form>
    <p><a href="<c:url value="/loginInfo" />">로그인 정보 확인 방법3 가지</a></p>
-   <p>principal: <sec:authentication property="principal"/></p>
+   <p>principal: <sec:authentication property="principal"/></p> <!-- principal = UserDetailsVO객체 -->
    <p><sec:authentication property="principal.username"/>님 환영합니다.</p>
    <p><sec:authentication property="principal.authorities"/>님 환영합니다.</p>
    <p><sec:authentication property="principal.cart"/></p>
 </sec:authorize>
  
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasRole('ADMIN')"> <!-- authorize = 권한 -->
    <p>당신은 관리자 입니다.</p>
 </sec:authorize>
 
