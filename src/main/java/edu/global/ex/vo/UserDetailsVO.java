@@ -43,7 +43,9 @@ public class UserDetailsVO implements UserDetails {
       this.authorities = authorities;
    }
    //////////////////////////////////////////////////////////////////////////////////
-   
+   public String getCart() {
+	   return "이것은 장바구니다.";
+   }
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
       // TODO Auto-generated method stub

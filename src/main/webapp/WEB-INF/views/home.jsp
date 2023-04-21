@@ -22,8 +22,19 @@
        <input type="submit" value="로그아웃" />
    </form:form>
    <p><a href="<c:url value="/loginInfo" />">로그인 정보 확인 방법3 가지</a></p>
+   <p>principal: <sec:authentication property="principal"/></p>
+   <p><sec:authentication property="principal.username"/>님 환영합니다.</p>
+   <p><sec:authentication property="principal.authorities"/>님 환영합니다.</p>
+   <p><sec:authentication property="principal.cart"/></p>
 </sec:authorize>
  
+<sec:authorize access="hasRole('ADMIN')">
+   <p>당신은 관리자 입니다.</p>
+</sec:authorize>
+
+<sec:authorize access="hasRole('USER')">
+   <p>당신은 일반 유저 입니다.</p>
+</sec:authorize>
 <h3>
     [<a href="<c:url value="/add/addForm" />">회원가입</a>]
     [<a href="<c:url value="/user/userHome" />">유저 홈</a>]
