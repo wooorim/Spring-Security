@@ -19,7 +19,7 @@ import lombok.ToString;
 public class UserVO {
 	private String username;
 	private String password;
-	private int enabled;
+	private int enabled; //1이 활성화 0이 비활성화
 	
 	private List<AuthVO> authList;
 }

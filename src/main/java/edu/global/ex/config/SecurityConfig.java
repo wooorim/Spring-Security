@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		//우선 CSRF설정을 해제한다. 초기 개발시만 해주는게 좋다.
-		//http.csrf().disable();
+		//http.csrf().disable(); //CSRF설정 해제코드.
 		
 		http.authorizeRequests() //권한 체크
 	      .antMatchers("/user/**").hasAnyRole("USER") // '/user'로 치고 들어갈 수 있는 권한을 가진 사람은 "USER"
