@@ -29,7 +29,7 @@ class UserServiceTest {
 		System.out.println(vo);
 
 		assertNotNull(vo);
-		assertEquals(vo.getUsername(), "홍길동2"); // setter함수로 홍길동을 세팅했기 때문에 비교해서 성공!
+		assertEquals(vo.getUsername(), "홍길동2"); 
 		
 		userService.addUser(vo);
 	}
